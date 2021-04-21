@@ -15,6 +15,8 @@ namespace RentWebService.Models
         public string Description { get; set; }
 
         public int Square { get; set; }
-
+        
+        public byte[] Image { get; set; }
+    
     }
 }

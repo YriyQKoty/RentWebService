@@ -6,8 +6,9 @@
 <table class="table">
     <thead class="thead-dark">
     <tr>
-         <td>Id</td>
+         <td >Id</td>
         <td>Address</td>
+        <td>Image</td>
         <td>Description</td>
         <td>Square</td>
         <td>Modify</td>
@@ -17,18 +18,38 @@
     @{
     int id = 0;
   
+        
     @foreach (var apartment in Model.Apartments)
     {
+        var base64 = Convert.ToBase64String(apartment.Image);
+        var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+        
         id++;
          <tr>
-             <td>@id</td>
+             <td class="bg-warning">@id  </td>
+
              <td>@apartment.Address</td>
-             <td>@apartment.Description</td>
+                <td ><img src="@imgSrc" style="max-width: 15rem;  border: burlywood 2px solid"/></td>
+             <td style=" max-width: 30rem;">
+                 <div style="max-height: 10rem; 
+             
+                 text-overflow: ellipsis; 
+                 white-space: normal;
+                  overflow: paged-y; 
+                  overflow-x: hidden;
+                    border: burlywood 1px dashed">
+                     @apartment.Description
+                 </div>
+             </td>
              <td>@apartment.Square m²</td>
              <td>
-                <a class="btn btn-warning" asp-page="edit" asp-route-apartmentId="@apartment.Id" role="button">Edit</a>
-                  <a class="btn btn-danger" asp-page="delete" asp-route-apartmentId="@apartment.Id" role="button">Delete</a>
-                  </td>
+                 <div class="m-2">
+                          <a class="btn btn-warning" asp-page="edit" asp-route-apartmentId="@apartment.Id" role="button">Edit</a>
+                     </div>
+                    <div  class="mt-5">
+                          <a class="btn btn-danger" asp-page="delete" asp-route-apartmentId="@apartment.Id" role="button">Delete</a>
+                    </div>
+             </td>
         </tr>
         }
     }

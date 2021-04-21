@@ -1,7 +1,7 @@
 ﻿@page "{apartmentId:min(1)}"
 @model RentWebService.Pages.Edit
 
-<form method="post">
+<form method="post" enctype="multipart/form-data">
 
     <div class="container mt-5">
         <div class="row">
@@ -18,6 +18,11 @@
                 <label>Square</label>
                 <input asp-for="Apartment.Square">
             </div>
+              
+            <div class="mt-5">
+                <label for ="image">Image</label>
+                <input id = "image" type="file" asp-for="Dto.FormFile">
+              </div>      
             <div class="mt-5">
                 <button class="btn btn-primary">
                     SUBMIT

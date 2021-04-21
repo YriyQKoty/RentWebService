@@ -1,12 +1,12 @@
 ﻿@page
 @model RentWebService.Pages.Create
 
-<form method="post">
+<form method="post" enctype="multipart/form-data">
     <div class="container mt-5">
         <div class="row">
             <div class="mt-5">
                 <label>Address</label>
-                <input asp-for="Apartment.Address">
+                <input asp-for="Apartment.Address" >
             </div>
              <div class="mt-5">
                  <label for="desc" >Description</label>
@@ -16,6 +16,11 @@
                 <label>Square</label>
                 <input asp-for="Apartment.Square">
             </div>
+            
+            <div class="mt-5">
+                            <label for ="image">Image</label>
+                            <input id = "image" type="file" asp-for="Dto.FormFile">
+            </div>    
             <div class="mt-5">
                 <button class="btn btn-primary">
                     SUBMIT

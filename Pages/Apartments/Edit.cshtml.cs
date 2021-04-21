@@ -1,8 +1,11 @@
 ﻿using System;
+using System.IO;
 using System.Threading.Tasks;
 using Dapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using RentWebService.DTOs;
+using RentWebService.Extensions;
 using RentWebService.Models;
 
 namespace RentWebService.Pages
@@ -17,6 +20,7 @@ namespace RentWebService.Pages
         }
 
         [BindProperty] public Apartment Apartment { get; set; }
+        [BindProperty] public ApartmentDTO Dto { get; set; }
 
         public void OnGet(int apartmentId)
         {
@@ -35,20 +39,38 @@ namespace RentWebService.Pages
         {
             using (var connection = _connectionFactory.CreateConnection())
             {
-                var book = connection.QuerySingleOrDefault<Apartment>("select * from apartments where id = @apartment_id",
+                var apartment = connection.QuerySingleOrDefault<Apartment>("select * from apartments where id = @apartment_id",
                     new {apartment_id = Apartment.Id});
-                if (book == null)
+                if (apartment == null)
                 {
                     return BadRequest();
                 }
-
-                await connection.ExecuteAsync("update apartments set Square = @Square, Address = @Address, Description = @Description where id = @Id", new
+                
+                if (Dto.FormFile != null)
                 {
-                    Apartment.Square,
-                    Apartment.Address,
-                    Apartment.Description,
-                    Apartment.Id
-                });
+                    Apartment.Image = Helper.GetBytesFromFile(Dto.FormFile);
+                    
+                    await connection.ExecuteAsync("update apartments set Square = @Square, Address = @Address, Image = @Image, Description = @Description where id = @Id", new
+                    {
+                        Apartment.Square,
+                        Apartment.Address,
+                        Apartment.Image,
+                        Apartment.Description,
+                        Apartment.Id
+                    });
+                }
+                else
+                {
+                    await connection.ExecuteAsync("update apartments set Square = @Square, Address = @Address, Description = @Description where id = @Id", new
+                    {
+                        Apartment.Square,
+                        Apartment.Address,
+                        Apartment.Description,
+                        Apartment.Id
+                    });
+                }
+
+                
             }
 
             return RedirectToPage("Index");
