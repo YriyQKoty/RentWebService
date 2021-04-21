@@ -1,0 +1,41 @@
+﻿@page
+@model Index
+
+<div class = "container mt-5">
+<h1>Apartments</h1>
+<table class="table">
+    <thead class="thead-dark">
+    <tr>
+         <td>Id</td>
+        <td>Address</td>
+        <td>Description</td>
+        <td>Square</td>
+        <td>Modify</td>
+    </tr>
+    </thead>
+    <tbody>
+    @{
+    int id = 0;
+  
+    @foreach (var apartment in Model.Apartments)
+    {
+        id++;
+         <tr>
+             <td>@id</td>
+             <td>@apartment.Address</td>
+             <td>@apartment.Description</td>
+             <td>@apartment.Square m²</td>
+             <td>
+                <a class="btn btn-warning" asp-page="edit" asp-route-apartmentId="@apartment.Id" role="button">Edit</a>
+                  <a class="btn btn-danger" asp-page="delete" asp-route-apartmentId="@apartment.Id" role="button">Delete</a>
+                  </td>
+        </tr>
+        }
+    }
+    </tbody>
+
+</table>
+
+
+<a class="text-center btn btn-primary" href="/apartments/create" role="button">Create</a>
+</div>

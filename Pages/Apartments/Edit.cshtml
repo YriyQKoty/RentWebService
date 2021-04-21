@@ -1,0 +1,31 @@
+﻿@page "{apartmentId:min(1)}"
+@model RentWebService.Pages.Edit
+
+<form method="post">
+
+    <div class="container mt-5">
+        <div class="row">
+            <div class="mt-5">
+                <input type="hidden" asp-for="Apartment.Id">
+                <label>Address</label>
+                <input asp-for="Apartment.Address">
+            </div>
+             <div class="mt-5">
+                  <label for="desc" >Description</label>
+                 <textarea id = "desc"  asp-for="Apartment.Description">Write some description here.</textarea>
+               </div>                     
+            <div class="mt-5">
+                <label>Square</label>
+                <input asp-for="Apartment.Square">
+            </div>
+            <div class="mt-5">
+                <button class="btn btn-primary">
+                    SUBMIT
+                </button>
+            </div>
+        </div>
+
+
+    </div>
+
+</form>
