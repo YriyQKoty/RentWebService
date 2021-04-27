@@ -1,5 +1,5 @@
 ﻿using System;
-using System.IO;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Dapper;
 using Microsoft.AspNetCore.Mvc;
@@ -21,9 +21,18 @@ namespace RentWebService.Pages
 
         [BindProperty] public Apartment Apartment { get; set; }
         [BindProperty] public ApartmentDTO Dto { get; set; }
-
+        
+        public IEnumerable<Models.Owner> Owners { get; private set; }
+        
         public void OnGet(int apartmentId)
         {
+            if (Owners == null) {
+                using (var connection = _connectionFactory.CreateConnection())
+                {
+                    Owners = connection.Query<Models.Owner>("select * from owner");
+                }
+            }
+            
             using (var connection = _connectionFactory.CreateConnection())
             {
                 Apartment = connection.QuerySingleOrDefault<Apartment>("select * from apartments where id = @apartment_id",
@@ -50,9 +59,10 @@ namespace RentWebService.Pages
                 {
                     Apartment.Image = Helper.GetBytesFromFile(Dto.FormFile);
                     
-                    await connection.ExecuteAsync("update apartments set Square = @Square, Address = @Address, Image = @Image, Description = @Description where id = @Id", new
+                    await connection.ExecuteAsync("update apartments set Square = @Square, OwnerId = @OwnerId, Address = @Address, Image = @Image, Description = @Description where id = @Id", new
                     {
                         Apartment.Square,
+                        Apartment.OwnerId,
                         Apartment.Address,
                         Apartment.Image,
                         Apartment.Description,
@@ -61,9 +71,10 @@ namespace RentWebService.Pages
                 }
                 else
                 {
-                    await connection.ExecuteAsync("update apartments set Square = @Square, Address = @Address, Description = @Description where id = @Id", new
+                    await connection.ExecuteAsync("update apartments set Square = @Square, OwnerId = @OwnerId, Address = @Address, Description = @Description where id = @Id", new
                     {
                         Apartment.Square,
+                        Apartment.OwnerId,
                         Apartment.Address,
                         Apartment.Description,
                         Apartment.Id

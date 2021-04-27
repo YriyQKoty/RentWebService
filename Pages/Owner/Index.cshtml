@@ -1,0 +1,33 @@
+﻿@page "{ownerId:min(1)}"
+@model RentWebService.Pages.Owners.Index
+<table class="table">
+@{
+    <tr>
+        <td class="bg-warning">  </td>
+        
+        @* <td ><img src="@imgSrc" style="max-width: 20rem;  border: burlywood 2px solid"/></td> *@
+        <td style=" max-width: 30rem;">
+            <div style="max-height: 10rem; 
+             
+                 text-overflow: ellipsis; 
+                 white-space: normal;
+                  overflow: paged-y; 
+                  overflow-x: hidden;
+                    border: burlywood 1px dashed">
+                @Model.Owner.Id
+            </div>
+        </td>
+         <td>@Model.Owner.Fullname</td>
+        <td>@Model.Owner.PhoneNumber</td>
+        <td>@Model.Owner.Licence</td>
+        @* <td> *@
+        @*     <div class="m-2"> *@
+        @*         <a class="btn btn-warning" asp-page="edit" asp-route-apartmentId="@apartment.Id" role="button">Edit</a> *@
+        @*     </div> *@
+        @*     <div  class="mt-5"> *@
+        @*         <a class="btn btn-danger" asp-page="delete" asp-route-apartmentId="@apartment.Id" role="button">Delete</a> *@
+        @*     </div> *@
+        @* </td> *@
+    </tr>
+}
+</table>

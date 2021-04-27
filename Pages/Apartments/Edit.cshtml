@@ -1,4 +1,5 @@
 ﻿@page "{apartmentId:min(1)}"
+@using RentWebService.Models
 @model RentWebService.Pages.Edit
 
 <form method="post" enctype="multipart/form-data">
@@ -18,6 +19,22 @@
                 <label>Square</label>
                 <input asp-for="Apartment.Square">
             </div>
+             <div class="mt-5">
+                            <label>Owner</label>
+                            <select asp-for="Apartment.OwnerId">
+                                @foreach (var owner in Model.Owners)
+                                {
+                                    if (owner.Id == Model.Apartment.OwnerId)
+                                    {
+                                        <option value="@owner.Id" selected="selected">@owner.Fullname</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="@owner.Id">@owner.Fullname</option>
+                                    }
+                                }
+                                </select>
+                        </div>
               
             <div class="mt-5">
                 <label for ="image">Image</label>

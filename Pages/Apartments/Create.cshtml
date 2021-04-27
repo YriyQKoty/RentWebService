@@ -10,15 +10,25 @@
             </div>
              <div class="mt-5">
                  <label for="desc" >Description</label>
-                 <textarea id = "desc"  asp-for="Apartment.Description">Write some descripyion here.</textarea>
+                 <textarea id = "desc"  asp-for="Apartment.Description">Write some description here.</textarea>
               </div>          
             <div class="mt-5">
                 <label>Square</label>
                 <input asp-for="Apartment.Square">
             </div>
+            <div class="mt-5">
+                <label>Owner</label>
+                <select asp-for="Apartment.OwnerId">
+                    @foreach (var owner in Model.Owners)
+                    {
+                        <option value="@owner.Id">@owner.Fullname</option>
+                    }
+                    </select>
+            </div>
             
             <div class="mt-5">
-                            <label for ="image">Image</label>
+                <label for ="image">Image</label>
+                
                             <input id = "image" type="file" asp-for="Dto.FormFile">
             </div>    
             <div class="mt-5">

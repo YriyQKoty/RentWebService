@@ -1,8 +1,4 @@
 ﻿
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Reflection.Metadata;
-using Microsoft.AspNetCore.Http;
 
 namespace RentWebService.Models
 {
@@ -17,6 +13,8 @@ namespace RentWebService.Models
         public int Square { get; set; }
         
         public byte[] Image { get; set; }
+        
+        public int OwnerId { get; set; }
     
     }
 }

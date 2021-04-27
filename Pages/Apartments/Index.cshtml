@@ -5,12 +5,13 @@
 <h1>Apartments</h1>
 <table class="table">
     <thead class="thead-dark">
-    <tr>
-         <td >Id</td>
-        <td>Address</td>
+    <tr class = "table-secondary">
+        <td>№</td>
         <td>Image</td>
         <td>Description</td>
+        <td>Address</td>
         <td>Square</td>
+        <td>Owner</td>
         <td>Modify</td>
     </tr>
     </thead>
@@ -27,9 +28,8 @@
         id++;
          <tr>
              <td class="bg-warning">@id  </td>
-
-             <td>@apartment.Address</td>
-                <td ><img src="@imgSrc" style="max-width: 15rem;  border: burlywood 2px solid"/></td>
+             
+                <td ><img src="@imgSrc" style="max-width: 20rem;  border: burlywood 2px solid"/></td>
              <td style=" max-width: 30rem;">
                  <div style="max-height: 10rem; 
              
@@ -41,7 +41,9 @@
                      @apartment.Description
                  </div>
              </td>
+             <td>@apartment.Address</td>
              <td>@apartment.Square m²</td>
+            <td> <a target="_blank" asp-page="/Owner/Index" asp-route-ownerId="@apartment.OwnerId">Visit owner page</a></td>
              <td>
                  <div class="m-2">
                           <a class="btn btn-warning" asp-page="edit" asp-route-apartmentId="@apartment.Id" role="button">Edit</a>

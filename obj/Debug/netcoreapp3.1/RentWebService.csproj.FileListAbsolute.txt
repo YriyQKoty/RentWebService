@@ -41,3 +41,4 @@ E:\All programs\RiderProjects\RentWebService\RentWebService\obj\Debug\netcoreapp
 E:\All programs\RiderProjects\RentWebService\RentWebService\obj\Debug\netcoreapp3.1\Razor\Pages\Apartments\Delete.cshtml.g.cs
 E:\All programs\RiderProjects\RentWebService\RentWebService\obj\Debug\netcoreapp3.1\Razor\Pages\Apartments\Edit.cshtml.g.cs
 E:\All programs\RiderProjects\RentWebService\RentWebService\obj\Debug\netcoreapp3.1\Razor\Pages\Apartments\Index.cshtml.g.cs
+E:\All programs\RiderProjects\RentWebService\RentWebService\obj\Debug\netcoreapp3.1\Razor\Pages\Owner\Index.cshtml.g.cs

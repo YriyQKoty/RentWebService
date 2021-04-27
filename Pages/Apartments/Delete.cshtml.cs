@@ -19,7 +19,7 @@ namespace RentWebService.Pages
         {
             using (var connection = _connectionFactory.CreateConnection())
             {
-                var apartment = connection.QuerySingleOrDefault<Book>("select * from apartments where id = @apartment_id",
+                var apartment = connection.QuerySingleOrDefault<Apartment>("select * from apartments where id = @apartment_id",
                     new {apartment_id = apartmentId});
                 if (apartment == null)
                 {
